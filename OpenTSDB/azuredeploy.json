@@ -4,6 +4,7 @@
   "parameters": {
     "clusterName": {
       "type": "string",
+      "defaultValue": "azurestacktsdb",
       "metadata": {
         "description": "The name of the HDInsight cluster to create."
       }
@@ -132,10 +133,24 @@
   },
   "resources": [
     {
+      "name": "[variables('clusterStorageAccountName')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "[variables('defaultApiVersion')]",
+      "dependsOn": [],
+      "tags": {},
+      "properties": {
+        "accountType": "Standard_LRS"
+      }
+    },
+    {
       "name": "[parameters('clusterName')]",
       "type": "Microsoft.HDInsight/clusters",
       "location": "[resourceGroup().location]",
       "apiVersion": "[variables('clusterApiVersion')]",
+      "dependsOn": [
+        "[concat('Microsoft.Storage/storageAccounts/',variables('clusterStorageAccountName'))]"
+      ],
       "tags": {},
       "properties": {
         "clusterVersion": "[parameters('clusterVersion')]",
