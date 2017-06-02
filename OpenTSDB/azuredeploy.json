@@ -93,6 +93,32 @@
         "Standard_D4_V2"
       ]
     },
+    "workerNodeSize": {
+      "type": "string",
+      "metadata": {
+        "description": "Size of the FUCKING REGION SERVERS that hosts the application"
+      },
+      "defaultValue": "Standard_D3_V2",
+      "allowedValues": [
+        "Standard_D1_V2",
+        "Standard_D2_V2",
+        "Standard_D3_V2",
+        "Standard_D4_V2"
+      ]
+    },
+        "headNodeSize": {
+      "type": "string",
+      "metadata": {
+        "description": "Size of the headnode that hosts the application"
+      },
+      "defaultValue": "Standard_D3_V2",
+      "allowedValues": [
+        "Standard_D1_V2",
+        "Standard_D2_V2",
+        "Standard_D3_V2",
+        "Standard_D4_V2"
+      ]
+    },
     "tsdPortNumber": {
       "type": "int",
       "defaultValue": 4242,
@@ -181,7 +207,7 @@
               "name": "headnode",
               "targetInstanceCount": "2",
               "hardwareProfile": {
-                "vmSize": "Standard_D3_v2"
+                "vmSize": "[parameters('headNodeSize')]"
               },
               "osProfile": {
                 "linuxOperatingSystemProfile": {
@@ -202,7 +228,7 @@
               "name": "workernode",
               "targetInstanceCount": "[parameters('clusterWorkerNodeCount')]",
               "hardwareProfile": {
-                "vmSize": "Standard_D3_v2"
+                "vmSize": "[parameters('workerNodeSize')]"
               },
               "osProfile": {
                 "linuxOperatingSystemProfile": {
