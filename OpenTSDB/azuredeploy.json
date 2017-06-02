@@ -136,9 +136,6 @@
       "type": "Microsoft.HDInsight/clusters",
       "location": "[resourceGroup().location]",
       "apiVersion": "[variables('clusterApiVersion')]",
-      "dependsOn": [
-        "[concat('Microsoft.Storage/storageAccounts/',variables('clusterStorageAccountName'))]"
-      ],
       "tags": {},
       "properties": {
         "clusterVersion": "[parameters('clusterVersion')]",
