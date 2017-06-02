@@ -58,7 +58,7 @@
     },
     "openTsdbVersion": {
       "type": "string",
-      "defaultValue": "2.3.0",
+      "defaultValue": "2.2.0",
       "allowedValues": [
         "2.2.0",
         "2.3.0"
@@ -131,17 +131,6 @@
     "singleQuote": "'"
   },
   "resources": [
-    {
-      "name": "[variables('clusterStorageAccountName')]",
-      "type": "Microsoft.Storage/storageAccounts",
-      "location": "[resourceGroup().location]",
-      "apiVersion": "[variables('defaultApiVersion')]",
-      "dependsOn": [],
-      "tags": {},
-      "properties": {
-        "accountType": "Standard_LRS"
-      }
-    },
     {
       "name": "[parameters('clusterName')]",
       "type": "Microsoft.HDInsight/clusters",
